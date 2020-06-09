@@ -1,0 +1,14 @@
+.projects{
+    margin-top: -350px;
+    display: none;
+    justify-content: space-between;
+}
+@media (max-width: 600px){
+	
+	.projects{
+		display: block;
+		
+	}
+	
+    
+}

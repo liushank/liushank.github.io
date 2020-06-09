@@ -1,0 +1,26 @@
+
+    .video-mobile-container{
+      z-index:1;object-fit:cover;width:100%;min-height:100%;min-width:100%;height:auto;
+      }
+    .e6-6 > .x-row-inner > *{
+      margin:0 calc(1rem / 2);
+      }
+    .x-frame-inner{
+      z-index:1;object-fit:cover !important;width:100% !important;min-height:100% !important;min-width:100% !important;height:auto !important;
+      }
+    .video-kont{
+      z-index:1;object-fit:cover !important;width:100% !important;
+      min-height:100% !important;min-width:100% !important;height:auto !important;
+      }
+    .mejs-controls{
+      position:absolute;top:50%;left:50%;
+      }
+    .mejs-button.mejs-playpause-button.mejs-play{
+      position:absolute;top:0%;left:49.5%;
+      }
+    .mejs-button button{
+      width:176px;height:62px;
+      }
+    .mejs-button.mejs-play button{
+      background-image:url(https://evacremers.com/public_html/wp-content/uploads/2020/04/Resurs-2.svg);background-repeat:no-repeat;background-size:cover;
+    }

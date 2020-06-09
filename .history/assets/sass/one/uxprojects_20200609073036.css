@@ -1,0 +1,23 @@
+.uxprojects {
+	margin-top: -400px;
+    height: 50px;
+    
+	background-color:transparent;
+	
+	display: flex;
+	
+}
+.buttons{
+	padding: 30px;
+	width: 300px;
+	margin: auto auto;
+	display: flex;
+	justify-content: space-between;
+	
+}
+.one{
+	background: white;
+	font-size: 25px;
+	outline: none;
+	padding: 3px 6px;
+}

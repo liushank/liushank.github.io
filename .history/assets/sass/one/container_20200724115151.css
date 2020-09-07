@@ -1,0 +1,17 @@
+.container{
+	z-index:2;
+	position: absolute;
+	margin:-10px 0 0 0;
+	display: none;
+	width: 70%;
+	height: 80px;
+	background-color: pink;
+}
+
+@media (max-width: 600px){
+	
+	.container{
+		display: block;
+	}
+    
+}

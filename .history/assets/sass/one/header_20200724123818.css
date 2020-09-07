@@ -1,0 +1,171 @@
+.header {
+	
+	margin-top: 30px;
+	background-color:transparent;
+	
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.logo {
+	z-index:2;
+	margin: 0 0 0 50px;
+    width: 80px;
+	 height: 80px;
+	 background-image: url(https://cdn.dribbble.com/users/31664/screenshots/10486826/media/e7786f03eaa8e97d706d5da42ffec864.gif);
+	 background-repeat: no-repeat;
+	 background-position: center;
+	 background-size: contain;
+}
+
+.ul-h{
+	z-index:2;
+	
+    width: 500px;
+	display: flex;
+	
+	
+	list-style-type: none;
+}
+
+ul.ul-h li {
+	margin: 0 30px;
+	font-size: 18px;
+}
+
+ul.ul-h li a {
+	color: white;
+	position: relative;
+	text-decoration: none;
+}
+
+ul.ul-h li a::after {
+	content: '';
+	background-color:white;
+	position: absolute;
+	bottom: -18px;
+	left: 0;
+	opacity: 0;
+	height: 2px;
+	width: 100%;
+	transition: transform 0.2s ease-in-out;
+}
+
+ul.ul-h li a:hover::after {
+	opacity: 1;
+	transform: translateY(-15px);
+}
+
+.section{
+	z-index:2;
+	
+	display: none;
+	margin: 0 120px 0 0;
+}
+span,span::before,span::after{
+	position: absolute;
+    margin: 0;
+    content: "";
+    display: block;
+    height: 4px;
+    width: 60px;
+    background: white;
+    
+    transition:all 0.3s ease-in-out;
+}
+span::before{
+	top: -16px;
+	
+}
+span::after{
+	top: 16px;
+	
+}
+span:hover{
+	background: transparent;
+}
+span:hover::before{
+	top: 5px;
+	transform: rotate(45deg);
+}
+span:hover::after{
+	top: -5px;
+	transform: rotate(-45deg);
+}
+
+
+.container{
+	z-index:2;
+	position: absolute;
+	margin:-10px 0 0 0;
+	display: none;
+	width: 70%;
+	height: 80px;
+	background-color: pink;
+}
+
+.ul-c{
+	z-index:2;
+	
+    width: 500px;
+	display: flex;
+	
+	
+	list-style-type: none;
+}
+
+ul.ul-c li {
+	margin: 0 30px;
+	font-size: 18px;
+}
+
+ul.ul-c li a {
+	color: white;
+	
+}
+
+ul.ul-c li a::after {
+	content: '';
+	background-color:white;
+	position: absolute;
+	bottom: -18px;
+	left: 0;
+	opacity: 0;
+	height: 2px;
+	width: 100%;
+	transition: transform 0.2s ease-in-out;
+}
+
+ul.ul-c li a:hover::after {
+	opacity: 1;
+	transform: translateY(-15px);
+}
+
+
+
+
+@media (max-width: 600px){
+	.header{
+		height: 100px;
+		margin-top: 0px;
+		background-color:pink;
+	}
+    .header ul{
+        display: none;
+	}
+	.section{
+		display: block;
+		
+	}
+	.logo{
+		width: 50px;
+	 height: 50px;
+	}
+	.container{
+		display: block;
+	}
+    
+}
+
+
+

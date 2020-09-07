@@ -1,0 +1,22 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Bodymovin Demo</title>
+    <script src="lottie.min.js"></script>
+</head>
+<body>
+    <div id="animation"></div>
+    <script>
+        lottie.loadAnimation({
+            path:'data.json',   //json文件路径
+            loop:true,
+            autoplay:true,
+            renderer:'canvas',  //渲染方式，有"html"、"canvas"和"svg"三种
+            container:document.getElementById('animation')
+        });
+        //lottie-web的完整api文档见GitHub项目首页(https://github.com/airbnb/lottie-web)
+    </script>
+</body>
+</html>

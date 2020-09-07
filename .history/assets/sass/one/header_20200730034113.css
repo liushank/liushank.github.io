@@ -1,0 +1,194 @@
+.header {
+	
+	margin-top: 30px;
+	background-color:transparent;
+	
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+}
+.logo {
+	z-index:2;
+	margin: 0 0 0 50px;
+    width: 80px;
+	 height: 80px;
+	 background-image: url(https://cdn.dribbble.com/users/31664/screenshots/10486826/media/e7786f03eaa8e97d706d5da42ffec864.gif);
+	 background-repeat: no-repeat;
+	 background-position: center;
+	 background-size: contain;
+}
+
+.ul-h{
+	z-index:2;
+	
+    width: 500px;
+	display: flex;
+	
+	
+	list-style-type: none;
+}
+
+ul.ul-h li {
+	margin: 0 30px;
+	font-size: 18px;
+}
+
+ul.ul-h li a {
+	color: white;
+	position: relative;
+	text-decoration: none;
+}
+
+ul.ul-h li a::after {
+	content: '';
+	background-color:white;
+	position: absolute;
+	bottom: -18px;
+	left: 0;
+	opacity: 0;
+	height: 2px;
+	width: 100%;
+	transition: transform 0.2s ease-in-out;
+}
+
+ul.ul-h li a:hover::after {
+	opacity: 1;
+	transform: translateY(-15px);
+}
+
+
+.manu{
+	z-index:2;
+	position: absolute;
+	
+	display: none;
+	width: 100%;
+	
+	
+}
+
+#container{
+	z-index:2;
+	
+	margin:5px 0 0 150px;
+	
+	
+	background-color: pink;
+	transform-origin: right;
+	transition: all 0.3s ease-in-out;
+	transform: scaleX(1);
+}
+
+.ul-c{
+	z-index:2;
+	margin: 0px 30px ;
+	background-color: pink;
+	
+	
+	list-style-type: none;
+}
+
+ul.ul-c li {
+	margin: 50px 15px ;
+	font-size: 40px;
+}
+
+ul.ul-c li a {
+	color: white;
+	
+}
+
+#section{
+	z-index:2;
+	margin: -50px 400px;
+	
+	
+}
+span,span::before,span::after{
+	position: absolute;
+	
+    content: "";
+    display: block;
+    height: 4px;
+    width: 60px;
+    background: white;
+   
+    transition:all 0.3s ease-in-out;
+}
+span::before{
+	top: -16px;
+	
+}
+span::after{
+	top: 16px;
+	
+}
+.manu:hover{
+	content: "";
+    display: block;
+	background: transparent;
+	
+}
+
+.manu:hover span{
+	background: transparent;
+}
+.manu:hover span::before{
+	top: 5px;
+	transform: rotate(45deg);
+}
+.manu:hover span::after{
+	top: -5px;
+	transform: rotate(-45deg);
+	
+}
+
+.manu:hover #container{
+	transform: scaleX(1);
+}
+
+
+
+
+
+.bottom{
+	width:100%;
+	position: absolute;
+	background-color: black;
+	
+}
+ul.ul-b li{
+	margin-top: 10px;
+	font-size: 15px;
+	text-align:center
+}
+ul.ul-b li a{
+	color: white;
+}
+
+
+@media (max-width: 600px){
+	.header{
+		height: 100px;
+		margin-top: 0px;
+		background-color:black;
+	}
+    .header ul{
+        display: none;
+	}
+	.section{
+		display: block;
+		
+	}
+	.logo{
+		width: 50px;
+	 height: 50px;
+	}
+	.manu{
+		display: block;
+	}
+    
+}
+
+
+

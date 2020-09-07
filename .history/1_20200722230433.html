@@ -1,0 +1,124 @@
+
+<!DOCTYPE html>
+<html>
+ 
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+ 
+	<body>
+		<!--表单一定要以表单域<form></form>开始和结束
+			也就是写表单一般一定要有表单域
+			除非你不想提交表单
+		-->
+		<form enctype="multipart/form-data" method="post" action="index2.html">
+			<div>
+				<!--
+				    <label>
+				    <input>标签
+			    -->
+				<label for="name">姓名:</label>
+				<input id="name" name="name" type="text" value="蔡徐坤" maxlength="6"/>
+			</div>
+			<div>
+				<!--
+				    <label>
+				    <input>标签
+			    -->
+				<label for="pwd">密码:</label>
+				<input id="pwd" name="pwd" type="password" value="7112" maxlength="13"/>
+			</div>
+			<div>
+				<!--
+				    <label>
+				    <input>标签
+			    -->
+				<label for="sex">性别:</label>
+				<input id="sex" name="sex" type="radio" value="男" />男
+				<input id="sex" name="sex" type="radio" value="女" checked="true" />女
+			</div>
+			<div>
+				<!--
+				    <label>
+				    <input>标签
+			    -->
+				<label for="fav">喜欢:</label>
+				<input id="fav" name="fav" type="checkbox" value="男" checked="true"/>唱
+				<input id="fav" name="fav" type="checkbox" value="女" checked="true"/>跳
+				<input id="fav" name="fav" type="checkbox" value="男" checked="true"/>rap
+				<input id="fav" name="fav" type="checkbox" value="男" checked="true"/>篮球
+			</div>
+			<div>
+				<!--如果要上传文件，使用type=“file”的属性值，但是普通表单只能上传字符数据
+					如果要上传文件，必须在<form></form>里面添加enctype="multipart/form-data"
+				-->
+				<label for="photo">上传:</label>
+				<input id="photo" name="photo" type="file" />
+				
+			</div>
+			<div>
+				
+				<label for="color">颜色:</label>
+				<input id="color" name="color" type="color" />
+				
+			</div>
+			<div>
+				
+				<label for="date">日期:</label>
+				<input id="date" name="date" type="date" />
+				
+			</div>
+			<!--<div>
+				
+				<label for="date">文章:</label>
+				<textarea id="article" name="article" rows="3" contenteditable="40"></textarea>
+				
+			</div>-->
+			<div>
+				
+				<label for="date">年份:</label>
+				<select id="year" name="year">
+					<option>1998</option>
+					<option>1991</option>
+					<option>1992</option>
+					<option>1993</option>
+					<option>1994</option>
+					<option>1995</option>
+					<option>1996</option>
+				</select>
+				<label for="date">多选年份:</label>
+				<select id="year" name="year">
+					<option>1998</option>
+					<option>1991</option>
+					<option>1992</option>
+					<option>1993</option>
+					<option>1994</option>
+					<option>1995</option>
+					<option>1996</option>
+					<option selected="true">2019</option>
+				</select>
+				
+			</div>
+			
+			<div>
+				<input id="imag" name="imag" type="image" src="img/3.jpg"/>
+				<input id="imag" name="imag" type="image" src="img/3.jpg"/>
+				<input id="imag" name="imag" type="image" src="img/3.jpg"/>
+				
+			</div>
+			<div>
+				<input id="imag" name="imag" type="image" src="img/3.jpg"/>
+				<input id="imag" name="imag" type="image" src="img/3.jpg"/>
+				<input id="imag" name="imag" type="image" src="img/3.jpg"/>
+			</div>
+			<div>
+				
+				<input id="submit" name="submit" type="submit" />
+				<input id="reset" name="reset" type="reset" />
+				
+				
+			</div>
+		</form>
+	</body>
+</html>

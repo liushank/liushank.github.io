@@ -1,0 +1,30 @@
+.ux{
+    z-index:1;
+    height: 1000px;
+}
+
+.ux-header{
+    z-index:1;
+    height: 300px;
+    margin-top: -110px;
+    background-color:black;
+}
+.ux-body{
+    
+    margin-top: 100px;
+    
+}
+.icongroup2{
+    margin-left: 500px;
+    margin-bottom: 50px;
+    display: flex;
+      justify-content: flex-start;
+  }
+
+  
+@media (max-width: 600px){
+	.ux-body{
+        margin-top: 10px;
+    }
+    
+}

@@ -1,0 +1,411 @@
+<!DOCTYPE HTML>
+<html>
+	<script src="/Users/mac/web.git/liushank.github.io/Blotter-master/build/blotter.js"></script>
+	<head>
+		<title>hi,this is liuliuhui</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<meta name="description" content="" />
+		<meta name="keywords" content="" />
+		<link href="assets/sass/main.css" rel="stylesheet" type="text/css">
+
+
+<link rel='stylesheet' id='x-stack-css'  href='https://evacremers.com/wp-content/themes/pro/framework/dist/css/site/stacks/integrity-light.css?ver=3.1.2' type='text/css' media='all' />
+		
+
+		
+	</head>
+
+	<body  data-rsssl=1 class="home page-template page-template-template-blank-5 
+								page-template-template-blank-5-php page page-id-6 x-integrity 
+								x-integrity-light x-full-width-layout-active x-content-sidebar-active x-post-meta-disabled pro-v3_1_2 cornerstone-v4_1_2">
+
+								<script src="/Users/mac/web.git/liushank.github.io/processing-js-master/processing.js"></script>
+								<script type="text/processing" data-processing-target="processing-canvas">
+									ArrayList<MovingNode> nodes;
+										float maxDistance = 65;
+										float dx = 30;
+										float dy = 30;
+										float maxNeighbors = 10;
+										
+										Boolean drawMode = true;
+										
+										
+										
+										void draw()
+										{
+										  //println(nodes.size());
+										  
+										  background(220);
+										  
+										  if(drawMode)
+										  {
+											if(mousePressed){
+											  addNewNode(mouseX,mouseY,random(-dx,dx),random(-dx,dx));
+											}
+										  } else
+										  {
+											addNewNode(random(width),random(height),0,0);
+										  }
+										  
+										  for(int i=0; i<nodes.size(); i++)
+										  {
+											MovingNode currentNode = nodes.get(i);
+											currentNode.setNumNeighbors( countNumNeighbors(currentNode,maxDistance) );
+										  }
+										  
+										  for(int i=0; i<nodes.size(); i++)
+										  {
+											MovingNode currentNode = nodes.get(i);
+											if(currentNode.x > width || currentNode.x < 0 || currentNode.y > height || currentNode.y < 0)
+											{
+											  nodes.remove(currentNode);
+											}
+										  }
+										  
+										  for(int i = 0; i < nodes.size(); i++){
+											MovingNode currentNode = nodes.get(i);
+											for(int j=0; j<currentNode.neighbors.size(); j++)
+											{
+											  MovingNode neighborNode = currentNode.neighbors.get(j);
+											  float lineColor = currentNode.calculateLineColor(neighborNode,maxDistance);
+											  stroke(lineColor, lineColor, lineColor);
+											  line(currentNode.x,currentNode.y,neighborNode.x,neighborNode.y);
+											}
+											currentNode.display();
+										  }
+										  
+										  
+										  
+										}
+										
+										void addNewNode(float xPos, float yPos, float dx, float dy)
+										{
+										  //println("add new node");
+										  //generates a random location within a 50x50px box around the mouse
+										  //float xPos = mouseX + random(-50,50);
+										  //float yPos = mouseY + random(-50,50);
+										  //adds a node at this location
+										  MovingNode node = new MovingNode(xPos+dx,yPos+dy);
+										  
+										  node.setNumNeighbors( countNumNeighbors(node,maxDistance) );
+										  
+										  //println("newly added node has " + node.numNeighbors + " neighbors");
+										  //println("and neighbors.size() = " + node.neighbors.size());
+										  
+										  
+										  if(node.numNeighbors < maxNeighbors){
+											nodes.add(node);
+											/*for(int i=0; i<nodes.size(); i++)
+											{
+											  MovingNode currentNode = nodes.get(i);
+											  currentNode.setNumNeighbors( countNumNeighbors(currentNode,maxDistance) );
+											}*/
+										  }
+										  
+										  
+										}
+										
+										int countNumNeighbors(MovingNode nodeA, float maxNeighborDistance)
+										{
+										  int numNeighbors = 0;
+										  nodeA.clearNeighbors();
+										  
+										  for(int i = 0; i < nodes.size(); i++)
+										  {
+											MovingNode nodeB = nodes.get(i);
+											float distance = sqrt((nodeA.x-nodeB.x)*(nodeA.x-nodeB.x) + (nodeA.y-nodeB.y)*(nodeA.y-nodeB.y));
+											if(distance < maxNeighborDistance)
+											{
+											  numNeighbors++;
+											  nodeA.addNeighbor(nodeB);
+											}
+										  }
+										  return numNeighbors;
+										}
+										
+										void keyPressed()
+										{
+										  drawMode = !drawMode;
+										  nodes = new ArrayList<MovingNode>();
+										}
+										class MovingNode
+										{
+										  float x;
+										  float y;
+										  int numNeighbors;
+										  ArrayList<MovingNode> neighbors;
+										  float lineColor;
+										  float nodeWidth = 3;
+										  float nodeHeight = 3;
+										  float fillColor = 50;
+										  float lineColorRange = 180;
+										  
+										  float xVel=0;
+										  float yVel=0;
+										  float xAccel=0;
+										  float yAccel=0;
+										  
+										  float accelValue = 0.5;
+										
+										  MovingNode(float xPos, float yPos)
+										  {
+											x = xPos;
+											y = yPos;
+											numNeighbors = 0;
+											neighbors = new ArrayList<MovingNode>();
+										  }
+										  
+										  void display()
+										  {
+											move();
+											
+											noStroke();
+											fill(fillColor);
+											ellipse(x,y,nodeWidth,nodeHeight);
+										  }
+										  
+										  void move()
+										  {
+											xAccel = random(-accelValue,accelValue);
+											yAccel = random(-accelValue,accelValue);
+											
+											xVel += xAccel;
+											yVel += yAccel;
+											
+											x += xVel;
+											y += yVel;
+										  }
+										  
+										  void addNeighbor(MovingNode node)
+										  {
+											neighbors.add(node);
+										  }
+										  
+										  void setNumNeighbors(int num)
+										  {
+											numNeighbors = num;
+										  }
+										  
+										  void clearNeighbors()
+										  {
+											neighbors = new ArrayList<MovingNode>();
+										  }
+										  
+										  float calculateLineColor(MovingNode neighborNode, float maxDistance)
+										  {
+											float distance = sqrt((x-neighborNode.x)*(x-neighborNode.x) + (y-neighborNode.y)*(y-neighborNode.y));
+											lineColor = (distance/maxDistance)*lineColorRange;
+											return lineColor;
+										  }
+											
+										}
+										class Node
+										{
+										  float x;
+										  float y;
+										  int numNeighbors;
+										  ArrayList<Node> neighbors;
+										  float lineColor;
+										  float nodeWidth = 3;
+										  float nodeHeight = 3;
+										  float fillColor = 50;
+										  float lineColorRange = 160;
+										
+										  Node(float xPos, float yPos)
+										  {
+											x = xPos;
+											y = yPos;
+											numNeighbors = 0;
+											neighbors = new ArrayList<Node>();
+										  }
+										  
+										  void display()
+										  {
+											noStroke();
+											fill(fillColor);
+											ellipse(x,y,nodeWidth,nodeHeight);
+										  }
+										  
+										  void addNeighbor(Node node)
+										  {
+											neighbors.add(node);
+										  }
+										  
+										  void setNumNeighbors(int num)
+										  {
+											numNeighbors = num;
+										  }
+										  
+										  void clearNeighbors()
+										  {
+											neighbors = new ArrayList<Node>();
+										  }
+										  
+										  float calculateLineColor(Node neighborNode, float maxDistance)
+										  {
+											float distance = sqrt((x-neighborNode.x)*(x-neighborNode.x) + (y-neighborNode.y)*(y-neighborNode.y));
+											lineColor = (distance/maxDistance)*lineColorRange;
+											return lineColor;
+										  }
+											
+										}
+										
+										
+								</script>
+								<canvas id="processing-canvas"> </canvas>
+
+
+		<!--header-->
+		<div class="header" >
+			<div class="logo"></div>
+		    <div class="section">
+				<span></span>
+			</div>
+			<ul>
+				<li><a href="1.html">交互作品</a></li>
+				<li><a href="2.html">其他作品</a></li>
+				<li><a href="#C4">关于我</a></li>
+			</ul>
+            
+		</div>
+	    
+    
+	
+
+
+
+
+	  
+		  
+				  
+
+
+		 <!--banner
+		 <div class="banner">
+			<div class="empty"></div>
+			<h2 class="welcome"> 网站暂时调试一下，可以先查看
+			<a href="https://i.ui.cn/ucenter/1655705">我的线上作品</a></h2>
+		</div>
+		<div class="anmiComp"><span></span></div>
+	-->
+  
+
+	
+
+		<!--开场动画  -->
+		
+	<div class="x-main full" role="main">
+       
+    
+			<article id="post-6" class="post-6 page type-page status-publish has-post-thumbnail hentry">
+				
+		
+		<div class="entry-content content">
+				
+		  
+		  
+		<div id="cs-content" class="cs-content" >
+		
+		
+		<div class="e6-1 x-section  x-hide-md x-hide-sm x-hide-xs" style="height:100vh;" id="clickarea" >
+		<div class="e6-2 x-row" >
+		<div class="x-row-inner">
+			
+		<div class="e6-3 x-col" >
+			
+		  <div class="e6-4 x-frame x-frame-video-player" >
+		  <div class="x-frame-inner">
+			
+			  <div class="e6-4 x-video x-video-player loop" data-x-element="x_mejs" data-x-params="{&quot;poster&quot;:&quot;&quot;}" >
+				
+				<video class="x-mejs" poster="" preload="auto" loop="" >
+			<source src="/Users/mac/web.git/liushank.github.io/image/蒸气.mp4" type="video/mp4" ></video>
+
+				
+				
+				<div class="player unsound" id="p1"></div>  
+				<div class="player sound" id="p2"></div>
+			
+			
+			</div>
+		  </div>
+		  </div>
+		</div>
+		  </div>
+		  </div>
+		</div>
+		
+	
+		<div class="e6-5 x-section  x-hide-lg x-hide-xl" >
+			  
+		   <div class="e6-6 x-row" >
+		  <div class="x-row-inner">
+			
+			<div class="e6-7 x-col" >
+			<video playsinline autoplay loop muted class="video-mobile-container" >
+			 <source type="video/mp4" src="https://liushank.oss-cn-beijing.aliyuncs.com/%E8%92%B8%E6%B0%94.mp4">
+		 
+				</video>
+			 </div>
+		  </div>
+		   </div>
+		</div>
+	     
+		</div>
+			
+		<div class="e507-17 x-bar-space x-bar-space-bottom  x-hide-lg x-hide-md x-hide-xl x-bar-space-h" ></div>
+		
+	</div>
+</div>
+	
+
+
+<!-- 
+    <div class="uxprojects">
+          <div class="buttons">
+			  <button type="one">交互设计</button>
+			  <button type="two">其他作品</button>
+		  </div>
+      
+	</div>
+-->
+<div class="projects">
+	 
+      <img src="/Users/mac/web.git/liushank.github.io/image/1.001.jpeg" width="200px" height="200px"></a>
+	  <img src="/Users/mac/web.git/liushank.github.io/image/2.001.jpeg" width="200px" height="200px"></a>
+</div>
+
+
+
+
+
+
+	
+
+<!--链接(link)一个jQuery库，这里使用的是Google托管的jQuery库,设置播放器-->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script type='text/javascript' src='https://evacremers.com/wp-content/themes/pro/cornerstone/assets/dist/js/site/cs.fa34ec9.js'></script>
+
+
+
+<script type='text/javascript' src='https://evacremers.com/wp-includes/js/mediaelement/mediaelement-and-player.min.js?ver=4.2.13-9993131'></script>
+<script type='text/javascript' src='https://evacremers.com/wp-includes/js/mediaelement/mediaelement-migrate.min.js?ver=5.4.1'></script>
+
+<script type='text/javascript'>
+/* <![CDATA[ */
+var _wpmejsSettings = {"pluginPath":"\/wp-includes\/js\/mediaelement\/",
+                        "classPrefix":"mejs-",
+						"stretching":"responsive"};
+/* ]]> */
+</script>
+<div class="my">
+<h1><a id="C4">hi</a></h1>
+<p>你好，我是刘柳慧<br>这是我的作品集<br>我的联系方式：17854285223</p>
+<div class="vx"></div>
+</div>
+
+
+
+	</body>
+</html>

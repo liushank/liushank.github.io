@@ -1,7 +1,7 @@
 .ux{
     z-index:1;
-    height: 1000px;
-    
+    height: auto;
+    background-color: #fff;
 }
 
 .ux-header{
@@ -14,6 +14,7 @@
 .word{
     margin-top: 50px;
     margin-left: 100px;
+    
     z-index:1;
 
 }
@@ -22,7 +23,7 @@
     color: white;
     font-size: 28px;
     padding-top: 100px;
-
+font-family: Helvetica;
 }
 
 .pointer{
@@ -46,6 +47,7 @@
     
     margin:0 auto;
     margin-top: 100px;
+    margin-bottom: 800px;
     width:90%;
 }
 
@@ -61,11 +63,66 @@
     display: flex;
       
   }
-
   
-@media (max-width: 600px){
+  @media (max-width: 780px){
 	.ux-body{
         margin-top: 10px;
+        margin-bottom: 10px;
+        width:100%;
+    }
+    
+    
+    .icongroup2{
+        margin-bottom: 150px;
+    margin:0 auto;
+    width: 50%;
+    display: flex;
+      }
+    
+   
+    .ux-header{
+       
+        height: 250px;
+        margin-top: -100px;
+       
+    }
+    
+    
+}
+  
+@media (max-width: 480px){
+	.ux-body{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width:100%;
+    }
+    .icongroup2{
+        display: none;
+       
+      }
+    .word{
+        margin-left: 30px;
+      
+    }
+    .word p{
+    
+        padding-top: 100px;
+        font-size: 23px;
+    }
+    .ux-header{
+       
+        height: 250px;
+        margin-top: -100px;
+       
+    }
+    
+    
+}
+@media (max-width: 375px){
+	.ux-body{
+        margin-top: 10px;
+        margin-bottom: 10px;
+        width:100%;
     }
     .icongroup2{
         display: none;
@@ -78,7 +135,7 @@
     .word p{
     
         padding-top: 100px;
-    
+        font-size: 20px;
     }
     .ux-header{
        

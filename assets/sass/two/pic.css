@@ -76,9 +76,10 @@ body{
 
 
 
-@media (max-width: 600px){
+@media (max-width: 480px){
 	.pic-body{
         margin-top: 10px;
+        width:95%;
     }
     .pic-body{
         column-count:2 ;
@@ -86,12 +87,45 @@ body{
     }
     .word{
         margin-left: 30px;
-      
+        margin-right: 30px;
     }
     .word p{
     
-        padding-top: 100px;
+        padding-top: 80px;
+        font-size: 23px;
+    }
+    .pic-header{
+       
+        height: 250px;
+        margin-top: -100px;
+       
+    }
     
+}
+
+@media (max-width: 375px){
+	.pic-body{
+        margin-top: 10px;
+        width:95%;
+    }
+    .pic-body{
+        column-count:2 ;
+        
+    }
+    .word{
+        margin-left: 30px;
+        margin-right: 30px;
+    }
+    .word p{
+    
+        padding-top: 80px;
+        font-size: 20px;
+    }
+    .pic-header{
+       
+        height: 250px;
+        margin-top: -100px;
+       
     }
     
 }
